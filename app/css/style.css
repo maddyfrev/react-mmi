@@ -1,0 +1,14 @@
+.machine {
+    color:red;
+    border-bottom:  1px solid blue;
+    text-align: center;
+    padding: 10px 0;
+}
+.machine.active{
+    color: green;
+}
+.header,.footer{
+    text-align: center;
+    background-color: blue;
+    padding: 20px 0;
+}
