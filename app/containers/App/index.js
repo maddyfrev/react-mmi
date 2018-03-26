@@ -35,21 +35,25 @@ class App extends React.Component {
     this.state = {
     machines:[
           {
+               id: 0,         
                name: "Machine à Café",
                isActive: true
              },
              
           { 
+            id: 1, 
             name: "Machine à Thé",
                isActive: false
              },
              
           { 
+            id: 2, 
             name: "Machine à Cappuccino",
                isActive: true
              },
              
         { 
+            id: 3, 
             name: "Machine à Soda",
                isActive: false
              },
@@ -61,11 +65,11 @@ class App extends React.Component {
       return(
          <div>
     <Header/>
-    
     { this.state.machines.map(machine =>
-    //console.log(machine.name))}
-    <Machine name= {machine.name}
-    isActive={machine.isActive}/>
+                  //console.log(machine.name))}
+         <Machine name= {machine.name}
+         key={machine.id}
+         isActive={machine.isActive}/>
     )}
   
   {  //<Machine name={this.state.machines[0].name} isActive={this.state.machines[0].isActive}/>

@@ -1,7 +1,6 @@
 
 .machine {
     color:red;
-    border-bottom:  1px solid black;
     text-align: center;
     padding: 10px 0;
     font-family: "Lucida Console", Monaco, monospace;
@@ -13,16 +12,17 @@
 .header,.footer{
     color: black;
     text-align: center;
-    background-color: grey;
+    background-color: silver;
     padding: 30px 0;
     font-family: Verdana, Geneva, sans-serif;
   
 }
-.bouton {
+.btn {
 	font:Bold 13px Arial;
-	background:#d34836;
-	color:chartreuse;
+	background:grey;
+	padding: 8px;
+	color:white;
 	width:90px;
-	border-radius:2px;
+	border-radius:30px;
 	border:none;
 }
