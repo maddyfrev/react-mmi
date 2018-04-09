@@ -51,24 +51,20 @@
 
 /* Machines */
 .machine {
-  border-bottom: 1px solid #fdfdfd;
+  border-bottom: 1px solid silver;
   font-size: 1rem;
-  padding: 1rem 0;
   color: #aaa;
   font-family: "Lucida Console", Monaco, monospace;
-}
-.machine {
-    color:red;
-    text-align: center;
-    padding: 10px 0;
-    font-family: "Lucida Console", Monaco, monospace;
-    
+  color:red;
+  text-align: center;
+  padding: 10px 0;
+  
   }
+
 .machine.active{
     color: green;
 }
-
-
+ 
 
 .btn {
   background: silver;
@@ -77,7 +73,8 @@
   padding: 5px 10px;
   /*margin-left: 25px;*/
   font-size: 14px;
-  
+  margin-right: 10px;
+  margin-top: 20px;
 }
 
 .btn:hover {
@@ -226,4 +223,32 @@
   -webkit-box-shadow: 0px 0px 5px 5px #0099E0;
   -moz-box-shadow: 0px 0px 5px 5px #0099E0;
   box-shadow: 0px 0px 5px 5px #0099E0;
+}
+
+/*Form*/
+input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 10;
+    margin-left: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 50%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 10;
+    margin-left: 150px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
 }

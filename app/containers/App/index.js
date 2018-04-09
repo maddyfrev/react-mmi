@@ -124,7 +124,7 @@ class App extends React.Component {
           {         
             id: 2, 
             isActive: false,
-            name: "Machine à cappucino"
+            name: "Tireuse à bière"
              },
              
         {            
@@ -171,10 +171,10 @@ class App extends React.Component {
 
      return(
          
-    <div className="main">
+    <div className="main" class="left">
 
     <Header/>
-    <div className="machines-list">
+    <div className="machines-list" >
     {/*Boucle sur notre collection de machines*/}
             {
               Object
@@ -188,9 +188,19 @@ class App extends React.Component {
                          handleStatusChange={this.handleStatusChange}
                          isActive={this.state.machines[key].isActive}/>
               )}
-          </div>
-        <Footer/>
-      </div>
+    </div>
+    <div className ="form" class="right">
+        <h2 >Ajouter une machine</h2>
+          <form>
+            <label>
+                Nom de la machine:
+                 <input type="text" name="name" />
+            </label>
+            <input type="submit" value="Envoyer" />
+          </form>
+    </div>
+    <Footer/>
+        </div>
     );
   }
 }

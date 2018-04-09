@@ -51,19 +51,18 @@ onToggleClick(){
 
     // Dans tous les cas, afficher
     return ( 
-    <div 
-    className={this.props.isActive ? "machine active" : "machine"}>
-    <h2>{this.props.name}</h2>
-   { /*<button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
-   {this.props.isActive ? "Désactiver" : "Activer"}
-    </button>*/}
-   <label>
-  <Toggle
-    defaultChecked={this.props.isActive}
-    onClick={(e) => this.onToggleClick(e)}/>
+    <div className={this.props.isActive ? "machine active" : "machine"}>
+        <h2>{this.props.name}</h2>
+            {/* <button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
+                 {this.props.isActive ? "Cliquer pour Désactiver la machine" : "Activer"}
+             </button>*/}
+            <label>
+                <Toggle
+                    checked={this.props.isActive}
+                    onClick={(e) => this.onToggleClick(e)}/>
   
-</label>
- </div>
+            </label>
+    </div>
     
     )
   }
