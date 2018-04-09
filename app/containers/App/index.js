@@ -96,6 +96,7 @@ import React from 'react';
 import Header from '../../components/Header.js';
 import Footer from '../../components/Footer.js';
 import Machine from '../../components/Machine.js';
+import Toggle from 'react-toggle'
 import '../../css/style.css';
 
 
@@ -140,14 +141,14 @@ class App extends React.Component {
     // 1. On copie le state existant
     const machines = { ...this.state.machines };
     // 2. On modifie le status de CETTE machine
-    machines[key].isActive = true;
+    machines[key].isActive = !machines[key].isActive;
     // Pour vérifier la nouvelle collection dans la console :
     console.log({ machines });
 
     // 3. On applique cette nouvelle collection au state
     this.setState({ machines });
   }
-
+ 
   
 /*
     // This binding is necessary to make `this` work in the callback

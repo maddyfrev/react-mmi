@@ -35,6 +35,7 @@ export default Machine;
  *
  */
 import React from 'react';
+import Toggle from 'react-toggle'
 
 class Machine extends React.Component {
  // Méthode lancée au clic sur le bouton "Toggle"
@@ -53,11 +54,16 @@ onToggleClick(){
     <div 
     className={this.props.isActive ? "machine active" : "machine"}>
     <h2>{this.props.name}</h2>
-    <button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
-       Activer
-    </button>
-    
-    </div>
+   { /*<button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
+   {this.props.isActive ? "Désactiver" : "Activer"}
+    </button>*/}
+   <label>
+  <Toggle
+    defaultChecked={this.props.isActive}
+    onClick={(e) => this.onToggleClick(e)}/>
+  
+</label>
+ </div>
     
     )
   }
