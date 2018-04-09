@@ -1,16 +1,6 @@
 
-.machine {
-    color:red;
-    text-align: center;
-    padding: 10px 0;
-    font-family: "Lucida Console", Monaco, monospace;
-    
-  }
-  
-.machine.active{
-    color: green;
-}
-.header,.footer{
+
+/*.header,.footer{
     color: black;
     text-align: center;
     background-color: silver;
@@ -30,4 +20,65 @@
 }
 .btn:hover{
     background:blue;
+}
+/* Layout */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header and footer, content listing */
+.header,
+.footer {
+  padding: 20px 0;
+  text-align: center;
+  background: #eee;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-weight: bold;
+}
+
+.machines-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+/* Machines */
+.machine {
+  border-bottom: 1px solid #fdfdfd;
+  font-size: 1rem;
+  padding: 1rem 0;
+  color: #aaa;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+.machine {
+    color:red;
+    text-align: center;
+    padding: 10px 0;
+    font-family: "Lucida Console", Monaco, monospace;
+    
+  }
+.machine.active{
+    color: green;
+}
+
+
+
+.btn {
+  background: #2196f3;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-left: 25px;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background-color: #f44336;
+  cursor: pointer;
 }

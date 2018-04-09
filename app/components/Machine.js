@@ -37,8 +37,13 @@ export default Machine;
 import React from 'react';
 
 class Machine extends React.Component {
-
-    
+ // Méthode lancée au clic sur le bouton "Toggle"
+onToggleClick(){
+    // On envoie l'index à la méthode qui changera la valeur
+    // La méthode et son argument sont tous les deux accessibles
+    // via des props qui ont été passées au composant
+    this.props.handleStatusChange(this.props.index);
+}    
 
   
   render() {
@@ -46,10 +51,10 @@ class Machine extends React.Component {
     // Dans tous les cas, afficher
     return ( 
     <div 
-    className={this.props.isMachineOn ? "machine active" : "machine"}>
+    className={this.props.isActive ? "machine active" : "machine"}>
     <h2>{this.props.name}</h2>
-    <button onClick={this.props.handleClick}>
-        {this.props.isMachineOn ? 'ON' : 'OFF'}
+    <button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
+       Activer
     </button>
     
     </div>

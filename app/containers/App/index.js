@@ -99,41 +99,57 @@ import Machine from '../../components/Machine.js';
 import '../../css/style.css';
 
 
-class app extends React.Component {
+class App extends React.Component {
   
   constructor(props) {
     super(props); //super(props) permet d'avoir accès au props
+   
+   
+    this.handleStatusChange = this.handleStatusChange.bind(this);
     this.state = {
     machines:[
           {               
             id: 0,   
-            isMachineOn: true,
+            isActive: true,
             name: "Machine à soda"
              },
              
           {               
             id: 1, 
-            isMachineOn: false,
+            isActive: false,
             name: "Machine à café"
              },
              
           {         
             id: 2, 
-            isMachineOn: false,
+            isActive: false,
             name: "Machine à cappucino"
              },
              
         {            
             id: 3, 
-            isMachineOn: true,
+            isActive: true,
             name: "Machine à thé"
-             },
+             }
         ]
 };
+}
 
-    console.log(this.state);
+   // Méthode pour activer une machine
+  handleStatusChange(key) {
+    // 1. On copie le state existant
+    const machines = { ...this.state.machines };
+    // 2. On modifie le status de CETTE machine
+    machines[key].isActive = true;
+    // Pour vérifier la nouvelle collection dans la console :
+    console.log({ machines });
+
+    // 3. On applique cette nouvelle collection au state
+    this.setState({ machines });
+  }
+
   
-
+/*
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
   }
@@ -144,7 +160,7 @@ class app extends React.Component {
         {isMachineOn: !prevState.isMachineOn}
         ));
     }
-    
+    */
 
   
   
@@ -154,11 +170,33 @@ class app extends React.Component {
 
      return(
          
-    <div>
+    <div className="main">
 
     <Header/>
-    
-    <button onClick={this.handleClick}>
+    <div className="machines-list">
+    {/*Boucle sur notre collection de machines*/}
+            {
+              Object
+                .keys(this.state.machines)
+                .map(key =>
+                // Le composant Machine s'affichera autant de fois
+                // qu'il y a d'objets dans la collection.
+                <Machine name={this.state.machines[key].name}
+                         key={this.state.machines[key].id}
+                         index={this.state.machines[key].id}
+                         handleStatusChange={this.handleStatusChange}
+                         isActive={this.state.machines[key].isActive}/>
+              )}
+          </div>
+        <Footer/>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+   /* <button onClick={this.handleClick}>
      {this.state.isMachineOn ? 'ON' : 'OFF'}
     </button>
     { this.state.machines.map(machine =>
@@ -181,4 +219,4 @@ class app extends React.Component {
 //quand on indique "state", c'est pour changer une valeur en local. d'où l'importante d'indiquer state dans le div et le button de ce component.
 //et de définir ce qu'il y a dans le state (ligne 12)
 // Le composant sera accessible avec le nom "ThisMachine"
-export default app;
+export default app;*/
