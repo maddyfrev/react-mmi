@@ -171,7 +171,7 @@ class App extends React.Component {
 
      return(
          
-    <div className="main" class="left">
+    <div className="main">
 
     <Header/>
     <div className="machines-list" >
@@ -189,7 +189,7 @@ class App extends React.Component {
                          isActive={this.state.machines[key].isActive}/>
               )}
     </div>
-    <div className ="form" class="right">
+    <div className ="form">
         <h2 >Ajouter une machine</h2>
           <form>
             <label>
