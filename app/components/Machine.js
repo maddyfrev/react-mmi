@@ -1,36 +1,6 @@
 
 /**
  *
- * Machine.js
- *
- */
- /*
-import React from 'react';
-
-class Machine extends React.Component {
-   handleClick() { console.log("coucou")}
-   render() {
-  // Dans tous les cas, afficher
-  //this.props.isActive? "machine" : "machine active"
-  //y'a du potentiel
-      return (
-    <div 
-    className={this.props.isActive ? "machine active" : "machine"}>
-    <h2> {this.props.name} </h2>
-     <button onClick={(e) => this.handleClick(e)} type="button" className="btn">
-     Toggle
-    </button>
-      
-    </div>
-    )
-  }
-}
-// Le composant sera accessible avec le nom "Machine"
-export default Machine;
-*/
-
-/**
- *
  * App.js
  *
  */
@@ -53,9 +23,6 @@ onToggleClick(){
     return ( 
     <div className={this.props.isActive ? "machine active" : "machine"}>
         <h2>{this.props.name}</h2>
-            {/* <button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
-                 {this.props.isActive ? "Cliquer pour Désactiver la machine" : "Activer"}
-             </button>*/}
             <label>
                 <Toggle
                     checked={this.props.isActive}

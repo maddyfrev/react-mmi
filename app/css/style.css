@@ -252,3 +252,14 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #45a049;
 }
+
+map-container {
+  height: 300px;
+  width: 100%;
+}
+
+.counter {
+  text-align: center;
+  font-size: 1.4em;
+}
+

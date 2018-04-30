@@ -1,113 +1,33 @@
-/**
- *
- * App.js
- *
- */
-/* 
-
-import React from 'react';
-
-// On importe ici les composants qu'on veut afficher
-import Machine from '../../components/Machine.js';
-import Header from '../../components/Header.js';
-import Footer from '../../components/Footer.js';
-import '../../css/style.css';
-// On peut aussi importer du CSS de la meme facon.
-
-/*export default function App() {
-  return (
-    // Un return doit retourner un seul élément du DOM
-    // Si on veut afficher plusieurs éléments adjacents,
-    // On devra donc les encapsuler dans une DIV parente.
-  
-   <div>
-    <Header/>
-    <Machine name="Machine 1" />
-    <Machine name="Machine 2"/>
-    <Machine name="Machine 3" />
-    <Machine name="Machine 4"/>
-    <Footer/>
-    </div>
-  );
-}*/
-/*
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    machines:[
-          {
-               id: 0,         
-               name: "Machine à Café",
-               isActive: true
-             },
-             
-          { 
-            id: 1, 
-            name: "Machine à Thé",
-               isActive: false
-             },
-             
-          { 
-            id: 2, 
-            name: "Machine à Cappuccino",
-               isActive: true
-             },
-             
-        { 
-            id: 3, 
-            name: "Machine à Soda",
-               isActive: false
-             },
-        ]
-      };
-      console.log(this.state);
-     }
-    render(){
-      return(
-         <div>
-    <Header/>
-    { this.state.machines.map(machine =>
-                  //console.log(machine.name))}
-         <Machine name= {machine.name}
-         key={machine.id}
-         isActive={machine.isActive}/>
-    )}
-  
-  {  //<Machine name={this.state.machines[0].name} isActive={this.state.machines[0].isActive}/>
-    //<Machine name={this.state.machines[1].name} isActive={this.state.machines[1].isActive}/>
-   // <Machine name={this.state.machines[2].name} isActive={this.state.machines[2].isActive}/>
-   // <Machine name={this.state.machines[3].name} isActive={this.state.machines[3].isActive}/> 
-   }
-    <Footer/>
-    </div>
-  );
-}
-}
-
-  */
-  
-  /**
- *
- * App.js
- *
- */
 import React from 'react';
 import Header from '../../components/Header.js';
 import Footer from '../../components/Footer.js';
 import Machine from '../../components/Machine.js';
+import AddmachineForm from '../../components/addmachine.js';
 import Toggle from 'react-toggle'
 import '../../css/style.css';
+import GoogleMapReact from 'google-map-react';
 
-
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 class App extends React.Component {
   
   constructor(props) {
     super(props); //super(props) permet d'avoir accès au props
-   
-   
+
     this.handleStatusChange = this.handleStatusChange.bind(this);
     this.state = {
+        center: {
+       lat: 48.8566,
+        lng: 2.3522
+      },
+    addmachine : function(machine) {
+     //create a unike key for each new machine item
+     var timestamp = (new Date()).getTime();
+     // update the state object
+     this.state.machines['machine-' + timestamp ] = machine;
+     // set the state
+     this.setState({ machines : this.state.machines });
+    },
+      zoom: 11,
     machines:[
           {               
             id: 0,   
@@ -137,11 +57,26 @@ class App extends React.Component {
 }
 
    // Méthode pour activer une machine
-  handleStatusChange(key) {
+  handleStatusChange(key) { 
+      
+
+      
     // 1. On copie le state existant
     const machines = { ...this.state.machines };
     // 2. On modifie le status de CETTE machine
     machines[key].isActive = !machines[key].isActive;
+            <div className="map-container">
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: "AIzaSyBU_IEeDtk0fIKfm18yj8bD6DDaJ0N-3e4" }}
+                defaultCenter={this.state.center}
+                defaultZoom={this.state.zoom}
+              >
+                <AnyReactComponent
+                  lat={this.state.center.lat}
+                  lng={this.state.center.lng}
+                />
+              </GoogleMapReact>
+            </div>
     // Pour vérifier la nouvelle collection dans la console :
     console.log({ machines });
 
@@ -164,17 +99,33 @@ class App extends React.Component {
     */
 
   
-  
  
   
     render(){ 
+        // Calcul des compteurs
+    const machinesIds = Object.keys(this.state.machines);
+    const totalActive = machinesIds.reduce((prevTotal, key) => {
+      const machine = this.state.machines[key];
+      const isAvailable = machine && machine.isActive;
+      // On incrémente le compteur à chaque fois que l'on trouve une machine active
+      return isAvailable ? prevTotal + 1 : prevTotal
+    }, 0);
+    const total = machinesIds.length;
 
      return(
          
     <div className="main">
 
     <Header/>
-    <div className="machines-list" >
+    
+    
+    
+ {/*Conteneur de notre liste*/}
+          {/*Compteurs*/}
+          <div className="counter">
+            <strong>{totalActive}</strong> / <strong>{total}</strong> Machines actives
+         </div>
+<div className="machines-list" >
     {/*Boucle sur notre collection de machines*/}
             {
               Object
@@ -189,36 +140,8 @@ class App extends React.Component {
                          isActive={this.state.machines[key].isActive}/>
               )}
     </div>
-    <div className ="form">
-        <h2 >Ajouter une machine</h2>
-          <form>
-            <label>
-                Nom de la machine:
-                 <input type="text" name="name" />
-            </label>
-            <input type="submit" value="Envoyer" />
-          </form>
-    </div>
-    <Footer/>
-        </div>
-    );
-  }
-}
 
-export default App;
 
-   /* <button onClick={this.handleClick}>
-     {this.state.isMachineOn ? 'ON' : 'OFF'}
-    </button>
-    { this.state.machines.map(machine =>
-                  //console.log(machine.name))}
-    
-        <Machine name= {machine.name}
-                key={machine.id}
-         isMachineOn={machine.isMachineOn}
-        />
-        
-    )}
     
     <Footer/>
     </div>
@@ -230,4 +153,4 @@ export default App;
 //quand on indique "state", c'est pour changer une valeur en local. d'où l'importante d'indiquer state dans le div et le button de ce component.
 //et de définir ce qu'il y a dans le state (ligne 12)
 // Le composant sera accessible avec le nom "ThisMachine"
-export default app;*/
+export default App;
